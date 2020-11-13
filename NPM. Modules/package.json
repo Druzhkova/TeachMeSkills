@@ -1,0 +1,17 @@
+{
+  "name": "teachmeskills",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "browserify index.js -o bundle.js -t [ babelify --presets [ @babel/preset-env ] ]"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@babel/preset-env": "^7.12.1",
+    "babelify": "^10.0.0"
+  }
+}
