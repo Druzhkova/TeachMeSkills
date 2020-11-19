@@ -1,5 +1,5 @@
 import React, { useCallback } from "react";
-import style from "./styles.module.css";
+import styled from "styled-components";
 
 export function Input({ onChangeText, value }) {
   const onChange = useCallback(
@@ -9,7 +9,18 @@ export function Input({ onChangeText, value }) {
     [onChangeText]
   );
 
-  return (
-    <input className={style.input} onChange={onChange} value={value}></input>
-  );
+  return <StyledInput onChange={onChange} value={value}></StyledInput>;
 }
+
+const StyledInput = styled.input`
+  border: 2px solid #808080ad;
+  height: 40px;
+  border-radius: 10px;
+  width: 240px;
+  font-family: cursive;
+  font-size: 20px;
+
+  &:focus {
+    outline: none;
+  }
+`;

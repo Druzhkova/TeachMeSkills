@@ -1,6 +1,23 @@
 import React from "react";
-import style from "./styles.module.css";
+import styled from "styled-components";
 
 export function Button({ onclick, children }) {
-  return <button className={style.button} onclick={onclick}>{children}</button>;
+  return <StyledButton onclick={onclick}>{children}</StyledButton>;
 }
+
+const StyledButton = styled.button`
+  margin: 30px;
+  height: 40px;
+  border: 2px solid grey;
+  border-radius: 10px;
+  width: auto;
+  min-width: 65px;
+  font-family: cursive;
+  font-size: 16px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: grey;
+    color: white;
+  }
+`;
