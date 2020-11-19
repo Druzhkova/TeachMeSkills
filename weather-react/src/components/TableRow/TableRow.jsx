@@ -19,7 +19,7 @@ const Tr = styled.tr`
   margin: 0;
 `;
 
-const Td = styled.tr`
+const Td = styled.td`
   border: 1px solid grey;
   margin: 0;
   padding: 10px;

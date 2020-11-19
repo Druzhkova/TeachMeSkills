@@ -1,6 +1,6 @@
-import "./App.css";
 import React, { useState, useCallback } from "react";
 import { Input, Button, Table, Form, TableRow } from "./components";
+import styled from "styled-components";
 
 function App() {
   const [value, setValue] = useState("");
@@ -31,7 +31,7 @@ function App() {
   }, [value]);
 
   return (
-    <div className="App">
+    <Container>
       <Form onSubmit={onSubmit}>
         <Input value={value} onChangeText={setValue} />
         <Button>{loading ? "loading..." : "Find"}</Button>
@@ -44,8 +44,12 @@ function App() {
           <TableRow data={weather} />
         ))}
       </Table>
-    </div>
+    </Container>
   );
 }
+
+const Container = styled.div`
+  text-align: center;
+`;
 
 export default App;
