@@ -17,7 +17,7 @@
 
 ### How the application might look like:
 
-![Example todo-list](./Homework.gif)
+<img src="./assets/example-todo-list.gif">
 
 
 ## ES6. Destructuring. Functions.
