@@ -21,13 +21,13 @@ function HeaderButton({ type, onClick, page, children }) {
 export function Header({ page, onButtonClick }) {
   return (
     <header>
-      <HeaderButton page={page} onClick={onButtonClick} type="All">
+      <HeaderButton page={page} onClick={onButtonClick} type="all">
         All
       </HeaderButton>
-      <HeaderButton page={page} onClick={onButtonClick} type="Active">
+      <HeaderButton page={page} onClick={onButtonClick} type="active">
         Active
       </HeaderButton>
-      <HeaderButton page={page} onClick={onButtonClick} type="Done">
+      <HeaderButton page={page} onClick={onButtonClick} type="done">
         Done
       </HeaderButton>
     </header>
