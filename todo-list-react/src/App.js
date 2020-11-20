@@ -33,16 +33,25 @@ function App() {
     [todos]
   );
 
+  const deleteTodo = useCallback((todoId) => {
+    const newTodos = todos.filter((todo) => todo.id !== todoId);
+    setTodos(newTodos);
+  }, [todos]);
+
   return (
     <Container>
       <Header onButtonClick={setCurrentPage} page={currentPage} />
       <Form onSubmit={addTodo} />
       {
-      todos.map((todo) => <TodoItem 
-        onChangeCompletionStatus={toggleCompletion} 
-        title={todo.title} 
-        id={todo.id}
-        isCompleted={todo.isCompleted}/>) // {...todos}
+        todos.map((todo) => (
+          <TodoItem
+            onChangeCompletionStatus={toggleCompletion}
+            onDelete={deleteTodo}
+            title={todo.title}
+            id={todo.id}
+            isCompleted={todo.isCompleted}
+          />
+        )) // {...todos}
       }
     </Container>
   );

@@ -2,12 +2,15 @@ import React, { useCallback } from "react";
 import styled from "styled-components";
 import { Button } from "../Button";
 
-export function TodoItem({ title, isCompleted, id, onChangeCompletionStatus }) {
+export function TodoItem({ title, isCompleted, id, onChangeCompletionStatus, onDelete}) {
   
   const onCompletionButtonClick = useCallback(() => {
     onChangeCompletionStatus(id);
   }, [id, onChangeCompletionStatus]);
 
+  const onDeleteClick = useCallback(() => {
+    onDelete(id)
+  }, [id, onDelete])
   return (
     <Container isCompleted={isCompleted}>
       <Title>{title}</Title>
@@ -15,7 +18,7 @@ export function TodoItem({ title, isCompleted, id, onChangeCompletionStatus }) {
         <StyledButon onClick={onCompletionButtonClick} color={isCompleted ? "#FCC10B" : "#28A745"}>
           {isCompleted ? "Undo" : "Done"}
         </StyledButon>
-        <StyledButon color="#DB3646">Delete</StyledButon>
+        <StyledButon onClick={onDeleteClick} color="#DB3646">Delete</StyledButon>
       </StyledInner>
     </Container>
   );
