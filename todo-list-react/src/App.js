@@ -1,17 +1,49 @@
-import React, { useState } from "react";
+import React, { useCallback, useState } from "react";
 import styled from "styled-components";
 import { Header, Form, TodoItem } from "./components";
 
 function App() {
   const [currentPage, setCurrentPage] = useState("all");
+  const [todos, setTodos] = useState([]);
+
+  const addTodo = useCallback((imputValue) => {
+    setTodos((prev) => [
+      ...prev,
+      {
+        title: imputValue,
+        isCompleted: false,
+        id: String(Math.random()),
+      },
+    ]);
+  }, []);
+
+  const toggleCompletion = useCallback(
+    (todoId) => {
+      const newTodos = todos.map((todo) => {
+        if (todo.id === todoId) {
+          return {
+            ...todo,
+            isCompleted: !todo.isCompleted,
+          };
+        }
+        return todo;
+      });
+      setTodos(newTodos);
+    },
+    [todos]
+  );
 
   return (
     <Container>
       <Header onButtonClick={setCurrentPage} page={currentPage} />
-      <Form></Form>
-      <TodoItem />
-      <TodoItem />
-      <TodoItem />
+      <Form onSubmit={addTodo} />
+      {
+      todos.map((todo) => <TodoItem 
+        onChangeCompletionStatus={toggleCompletion} 
+        title={todo.title} 
+        id={todo.id}
+        isCompleted={todo.isCompleted}/>) // {...todos}
+      }
     </Container>
   );
 }

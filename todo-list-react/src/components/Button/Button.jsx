@@ -5,7 +5,7 @@ export function Button({
   children,
   onClick,
   type = "solid",
-  color = "black",
+  color = "#24292E",
   ...resProps
 }) {
   return (

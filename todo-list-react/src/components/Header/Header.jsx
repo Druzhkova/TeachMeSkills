@@ -11,7 +11,7 @@ function HeaderButton({ type, onClick, page, children }) {
     <StyledButton
       onClick={onClickHandler}
       type="transparent"
-      color={page === type ? "green" : "deepskyblue"}
+      color={page === type ? "#28A745" : "deepskyblue"}
     >
       {children}
     </StyledButton>
