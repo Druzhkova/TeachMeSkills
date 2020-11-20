@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { Header } from "./components";
 
 function App() {
+  const [currentPage, setCurrentPage] = useState("all");
+
   return (
     <Container>
-      <Header />
+      <Header onButtonClick={setCurrentPage} page={currentPage} />
     </Container>
   );
 }

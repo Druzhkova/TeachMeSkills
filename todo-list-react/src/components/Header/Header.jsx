@@ -1,19 +1,35 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { Button } from "../Button";
 import styled from "styled-components";
 
-export function Header({ children }) {
+function HeaderButton({ type, onClick, page, children }) {
+  const onClickHandler = useCallback(() => {
+    onClick(type);
+  }, [onClick, type]);
+
+  return (
+    <StyledButton
+      onClick={onClickHandler}
+      type="transparent"
+      color={page === type ? "green" : "deepskyblue"}
+    >
+      {children}
+    </StyledButton>
+  );
+}
+
+export function Header({ page, onButtonClick }) {
   return (
     <header>
-      <StyledButton type="transparent" color="deepskyblue">
+      <HeaderButton page={page} onClick={onButtonClick} type="All">
         All
-      </StyledButton>
-      <StyledButton type="transparent" color="deepskyblue">
+      </HeaderButton>
+      <HeaderButton page={page} onClick={onButtonClick} type="Active">
         Active
-      </StyledButton>
-      <StyledButton type="transparent" color="deepskyblue">
+      </HeaderButton>
+      <HeaderButton page={page} onClick={onButtonClick} type="Done">
         Done
-      </StyledButton>
+      </HeaderButton>
     </header>
   );
 }
