@@ -1,7 +1,13 @@
 import React from "react";
 import styled from "styled-components";
 
-export function Button({ children, onClick, type, color, ...resProps }) {
+export function Button({
+  children,
+  onClick,
+  type = "solid",
+  color = "black",
+  ...resProps
+}) {
   return (
     <StyledButton onClick={onClick} customType={type} color={color} {...resProps}>
       {children}
@@ -10,7 +16,7 @@ export function Button({ children, onClick, type, color, ...resProps }) {
 }
 
 const StyledButton = styled.button`
-  padding: 10px 15px;
+  padding: 9px 15px;
   border-radius: 5px;
   font-size: 16px;
   cursor: pointer;

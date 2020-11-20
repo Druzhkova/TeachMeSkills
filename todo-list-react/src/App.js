@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { Header } from "./components";
+import { Header, Form } from "./components";
 
 function App() {
   const [currentPage, setCurrentPage] = useState("all");
@@ -8,6 +8,7 @@ function App() {
   return (
     <Container>
       <Header onButtonClick={setCurrentPage} page={currentPage} />
+      <Form></Form>
     </Container>
   );
 }
