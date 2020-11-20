@@ -11,7 +11,7 @@ export function TodoItem({ title, isCompleted, id, onChangeCompletionStatus, onD
   const onDeleteClick = useCallback(() => {
     onDelete(id)
   }, [id, onDelete])
-  
+
   return (
     <Container isCompleted={isCompleted}>
       <Title>{title}</Title>
