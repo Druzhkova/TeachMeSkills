@@ -4,7 +4,7 @@
 * Setup react and redux
 * Implement application
 
-<img src="./assets/rr-first.png" width="300"> <img src="./assets/rr-second.png" width="300"> <img src="./assets/rr-third.png" width="300">
+<img src="./assets/rr-first.png" width="250"> <img src="./assets/rr-second.png" width="250"> <img src="./assets/rr-third.png" width="250">
 
 * All API request should be inside middlewares
 
