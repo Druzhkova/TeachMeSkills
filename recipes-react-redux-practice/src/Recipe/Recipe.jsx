@@ -2,12 +2,13 @@ import React, { useState, useCallback } from "react";
 // import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { Input, Button } from "../components";
-import { RecipeItem } from "./components";
+import { RecipeItem, DetailsPage } from "./components";
 import { getRecipeRequest, getMoreRecipeRequest } from "./actions";
 import SyncLoader from "react-spinners/SyncLoader";
 
 export function Recipe() {
   const [value, setValue] = useState("");
+  const [detailsPageData, setDetailsPageData] = useState(null);
   const dispatch = useDispatch();
 
   const getRecipe = useCallback(() => {
@@ -18,11 +19,17 @@ export function Recipe() {
     dispatch(getMoreRecipeRequest());
   }, [dispatch]);
 
+  const goToDetailsPage = useCallback((recipe) => {
+    setDetailsPageData(recipe);
+  }, []);
+
   const { data, loading, loadingMore, errorMessage } = useSelector(
     (state) => state.recipe
   );
 
-  return (
+  return detailsPageData ? (
+    <DetailsPage data={detailsPageData} />
+  ) : (
     <div>
       <form onSubmit={(e) => e.preventDefault()}>
         <Input value={value} onChangeText={setValue} />
@@ -32,12 +39,7 @@ export function Recipe() {
       {loading ? <SyncLoader /> : null}
       {data
         ? data.hits.map(({ recipe }) => (
-            <RecipeItem
-              key={recipe.uri}
-              healthLabels={recipe.healthLabels}
-              image={recipe.image}
-              title={recipe.label}
-            />
+            <RecipeItem key={recipe.uri} data={recipe} onclick={goToDetailsPage}/>
           ))
         : null}
 
