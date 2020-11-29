@@ -1,41 +1,67 @@
 import React from "react";
 import styled from "styled-components";
 
-export const DetailsPage = ({ data }) => {
+export const DetailsPage = ({ data, onGoBackPress }) => {
   const { image, ingredients, label } = data;
 
   const renderIngredient = ({ text, weight, image: ingredientImage }) => {
     return (
       <IngredientContainer>
-        <IngredientTitle>{`${text}: ${weight}`}</IngredientTitle>
         <IngredientImage src={ingredientImage} />
+        <IngredientTitle>{`${text}: ${weight}`}</IngredientTitle>
       </IngredientContainer>
     );
   };
 
-  
   return (
     <Container>
-      <Title>{label}</Title>
+      <div>
+        <GoBackButton onClick={onGoBackPress}>&#8592;</GoBackButton>
+        <Title>{label}</Title>
+      </div>
       <Image src={image} alt="" />
       {ingredients.map(renderIngredient)}
     </Container>
   );
 };
 
-const Container = styled.div``;
-const Title = styled.h2``;
-
-const Image = styled.img`
-  width: 300px;
-  height: 300px;
+const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-atems: center;
+  max-width: 300px;
+  margin: 0 auto;
 `;
 
-const IngredientContainer = styled.div``;
+const Title = styled.h2`
+  text-align: center;
+  margin-top: 0;
+`;
 
-const IngredientTitle = styled.h3``;
+const GoBackButton = styled.span`
+  font-size: 34px;
+  cursor: pointer;
+`;
+
+const Image = styled.img`
+  width: 100%;
+  height: 300px;
+  margin-bottom: 15px;
+`;
+
+const IngredientContainer = styled.div`
+  display: flex;
+  align-atems: center;
+  margin-bottom: 15px;
+`;
+
+const IngredientTitle = styled.p`
+  margin: 0;
+`;
 
 const IngredientImage = styled.img`
   width: 50px;
   height: 50px;
+  margin-right: 10px;
 `;

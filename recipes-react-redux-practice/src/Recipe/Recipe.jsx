@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from "react";
-// import styled from "styled-components";
+import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { Input, Button } from "../components";
 import { RecipeItem, DetailsPage } from "./components";
@@ -23,14 +23,18 @@ export function Recipe() {
     setDetailsPageData(recipe);
   }, []);
 
+  const resetDetailsPageData = useCallback(() => {
+    setDetailsPageData(null);
+  }, []);
+
   const { data, loading, loadingMore, errorMessage } = useSelector(
     (state) => state.recipe
   );
 
   return detailsPageData ? (
-    <DetailsPage data={detailsPageData} />
+    <DetailsPage onGoBackPress={resetDetailsPageData} data={detailsPageData} />
   ) : (
-    <div>
+    <Container>
       <form onSubmit={(e) => e.preventDefault()}>
         <Input value={value} onChangeText={setValue} />
         <Button onClick={getRecipe}>Search</Button>
@@ -39,7 +43,11 @@ export function Recipe() {
       {loading ? <SyncLoader /> : null}
       {data
         ? data.hits.map(({ recipe }) => (
-            <RecipeItem key={recipe.uri} data={recipe} onclick={goToDetailsPage}/>
+            <RecipeItem
+              key={recipe.uri}
+              data={recipe}
+              onclick={goToDetailsPage}
+            />
           ))
         : null}
 
@@ -48,6 +56,11 @@ export function Recipe() {
           {loadingMore ? "loading..." : "loading more"}
         </Button>
       ) : null}
-    </div>
+    </Container>
   );
 }
+
+const Container = styled.div`
+  margin: 0 auto;
+  width: 500px;
+`;
